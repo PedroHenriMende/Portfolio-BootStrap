@@ -1,27 +1,28 @@
 const $ = (id) => document.getElementById(id);
 
-/* Textos PT/EN (inclui os itens do menu) */
+/* Textos PT/EN */
 const T = {
   pt: { navHome:"Home", navAbout:"Sobre", navProjects:"Projetos", navFeatured:"Destaque", navRobotics:"Robótica", navContact:"Contato",
     heroEyebrow:"SISTEMA INICIALIZADO", heroRole:"Desenvolvedor | Robótica | Tecnologia",
     heroDesc:"Estudante de Análise e Desenvolvimento de Sistemas, 6 anos de robótica competitiva e paixão por construir coisas com código.",
     heroCta:"Vamos conversar", aboutTitle:"Sobre",
-    aboutBio:"Tenho 18 anos, sou natural de Sertãozinho/SP e estou cursando Análise e Desenvolvimento de Sistemas na Faculdade SENAI Ribeirão Preto, após concluir o técnico em Desenvolvimento de Sistemas no SENAI e o Ensino Médio no SESI CE-241. Por 3 anos integrei a equipe de robótica FRC Steel Bulls 9460, ajudando a construir o Project Bull AI, e venho me aprofundando em JavaScript, TypeScript, Java, C# e Python. Nas horas livres, jogo basquete, games com os amigos e crio sites por diversão.",
+    aboutBio:"Tenho 18 anos, sou natural de Sertãozinho/SP, já concluí o Ensino Médio no SESI CE-241 e o técnico em Desenvolvimento de Sistemas no SENAI, e estou atualmente no 2º semestre de Análise e Desenvolvimento de Sistemas na Faculdade SENAI Ribeirão Preto. Por 3 anos integrei a equipe de robótica FRC Steel Bulls 9460, ajudando a construir o Project Bull AI, e venho me aprofundando em JavaScript, TypeScript, Java, C# e Python. Nas horas livres, jogo basquete, games com os amigos e crio sites por diversão.",
     eduTitle:"Formação", projTitle:"Projetos", featTitle:"Project Bull AI",
+    featTagline:"Mais do que robôs.",
     featDesc:"Robô de competição com integração de Inteligência Artificial, desenvolvido e pilotado ao longo de 3 anos na equipe Steel Bulls 9460, competindo na Regional FRC de São Paulo e no Nacional FRC em Brasília.",
-    roboTitle:"Momentos / Robótica", contTitle:"Contato", view:"Ver projeto" },
+    roboTitle:"Momentos / Robótica", roboTagline:"Mais que robôs: uma equipe.", contTitle:"Contato", view:"Ver projeto" },
   en: { navHome:"Home", navAbout:"About", navProjects:"Projects", navFeatured:"Flagship", navRobotics:"Robotics", navContact:"Contact",
     heroEyebrow:"SYSTEM ONLINE", heroRole:"Developer | Robotics | Technology",
     heroDesc:"Systems Analysis & Development student, 6 years of competitive robotics, and a passion for building things with code.",
     heroCta:"Let's talk", aboutTitle:"About",
-    aboutBio:"I'm 18, from Sertãozinho/SP, currently studying Systems Analysis and Development at Faculdade SENAI Ribeirão Preto, after finishing a technical degree in Systems Development at SENAI and high school at SESI CE-241. For 3 years I was part of the FRC Steel Bulls 9460 robotics team, helping build Project Bull AI, and I've been diving into JavaScript, TypeScript, Java, C# and Python. In my free time I play basketball, game with friends, and build websites for fun.",
+    aboutBio:"I'm 18, from Sertãozinho/SP, I've already finished high school at SESI CE-241 and a technical degree in Systems Development at SENAI, and I'm currently in my 2nd semester of Systems Analysis and Development at Faculdade SENAI Ribeirão Preto. For 3 years I was part of the FRC Steel Bulls 9460 robotics team, helping build Project Bull AI, and I've been diving into JavaScript, TypeScript, Java, C# and Python. In my free time I play basketball, game with friends, and build websites for fun.",
     eduTitle:"Education", projTitle:"Projects", featTitle:"Project Bull AI",
+    featTagline:"It's more than robots.",
     featDesc:"Competition robot with integrated Artificial Intelligence, built and piloted over 3 years with team Steel Bulls 9460, competing at the FRC São Paulo Regional and the FRC Brasília Nationals.",
-    roboTitle:"Moments / Robotics", contTitle:"Contact", view:"View project" },
+    roboTitle:"Moments / Robotics", roboTagline:"More than robots: a team.", contTitle:"Contact", view:"View project" },
 };
 
 /* Dados */
-const NAV = [["home","navHome"],["about","navAbout"],["projects","navProjects"],["featured","navFeatured"],["robotics","navRobotics"],["contact","navContact"]];
 const SKILLS = ["Java","JavaScript","TypeScript","Python","C#","HTML5","CSS3","Git","GitHub","SQL"];
 const GH = "https://github.com/";
 const PROJ = [
@@ -54,10 +55,6 @@ let lang = localStorage.getItem("lang") || "pt";
 function applyLang() {
   document.querySelectorAll("[data-i]").forEach((e) => (e.textContent = T[lang][e.dataset.i]));
 
-  const link = (id, key, close) => `<a class="nav-link text-white" href="#${id}" ${close ? 'data-bs-dismiss="offcanvas"' : ""}>${T[lang][key]}</a>`;
-  $("sideNav").innerHTML = NAV.map(([id, key]) => link(id, key, false)).join("");
-  $("mobileNavLinks").innerHTML = NAV.map(([id, key]) => link(id, key, true)).join("");
-
   $("projGrid").innerHTML = PROJ.map((p) => `<div class="col-md-6 col-lg-4"><div class="card h-100">
       <div class="card-body"><h3 class="h6">${p.n}</h3><p class="small text-body-secondary" style="min-height:3.2em">${p[lang]}</p>
       <div class="d-flex flex-wrap gap-2 mb-2">${p.t.map((x) => `<span class="badge text-bg-secondary">${x}</span>`).join("")}</div>
@@ -79,7 +76,7 @@ document.querySelectorAll(".lang-btn").forEach((b) => b.addEventListener("click"
   applyLang();
 }));
 
-/* Tema claro/escuro nativo do Bootstrap 5.3 (data-bs-theme) */
+/* Tema claro e escuro nativo do Bootstrap 5.3 (data-bs-theme) */
 function setTheme(t) {
   document.documentElement.setAttribute("data-bs-theme", t);
   localStorage.setItem("theme", t);
@@ -88,5 +85,10 @@ function setTheme(t) {
 setTheme(localStorage.getItem("theme") || "dark");
 document.querySelectorAll(".theme-btn").forEach((b) => b.addEventListener("click", () =>
   setTheme(document.documentElement.getAttribute("data-bs-theme") === "light" ? "dark" : "light")));
+
+/* Easter egg isolado: o botão "não clica aqui" leva pro novo portfólio */
+$("glitchBtn")?.addEventListener("click", () => {
+  window.location.href = "https://pedrohenrimende.github.io/My-Portfolio/";
+});
 
 applyLang();
