@@ -2,8 +2,6 @@
 
 Portfólio pessoal com identidade visual cyberpunk/robótica, desenvolvido em **HTML5, CSS3, Bootstrap 5.3 e JavaScript puro (Vanilla JS)**.
 
-🔗 **Demo publicada:** https://claude.ai/artifact/48DtX8KEbQs7Ke1drJftd8
-
 ## ✨ Funcionalidades
 
 - Sidebar de navegação vertical com destaque automático da seção visível (scroll-spy)
