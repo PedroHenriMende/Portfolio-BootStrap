@@ -1,122 +1,150 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="dark">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pedro Henrique — Dev &amp; Robótica</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Share+Tech+Mono&family=Inter:wght@400;500;600&display=swap"
-    rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
-  <div id="loader"><span class="mono glitch" data-text="INITIALIZING SYSTEM..."
-      style="color:var(--accent);font-size:1rem">INITIALIZING SYSTEM...</span>
-    <div class="bar"><span></span></div>
-  </div>
-  <div id="navload"></div>
-  <div id="cursor"></div>
+<!-- Sidebar (desktop): nav vertical fixa. Links preenchidos pelo script.js -->
+<body data-bs-spy="scroll" data-bs-target="#sideNav" data-bs-offset="10" tabindex="0">
 
-  <aside class="sidebar" id="sidebar">
-    <a href="#home" class="brand-mark mono" aria-label="Início">P_</a>
-    <div class="side-nav" id="sideNav"></div>
-    <div class="side-ctrl">
-      <input type="color" id="colorpick" value="#ff2b2b" aria-label="Escolher cor de destaque">
-      <button class="ctrl-btn" id="themeBtn" aria-label="Alternar tema"><i class="bi bi-moon-stars"></i></button>
-      <button class="ctrl-btn mono" id="langBtn" aria-label="Alternar idioma">EN</button>
+  <aside class="d-none d-md-flex flex-column position-fixed top-0 start-0 vh-100 bg-dark p-3" style="width:220px">
+    <nav class="nav nav-pills flex-column mb-auto gap-1 mt-2" id="sideNav"></nav>
+    <div class="d-flex gap-2 mt-3">
+      <button class="btn btn-outline-light btn-sm theme-btn"><i class="bi bi-moon-stars"></i></button>
+      <button class="btn btn-outline-light btn-sm lang-btn">EN</button>
     </div>
   </aside>
 
+  <!-- Barra fina no topo (mobile): abre a sidebar como gaveta (offcanvas) -->
+  <nav class="navbar navbar-dark bg-dark fixed-top d-md-none">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#home">Pedro Henrique</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav"></button>
+    </div>
+  </nav>
+
+  <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="mobileNav">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title text-white">Menu</h5>
+      <button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <nav class="nav nav-pills flex-column gap-1" id="mobileNavLinks"></nav>
+      <div class="d-flex gap-2 mt-3">
+        <button class="btn btn-outline-light btn-sm theme-btn"><i class="bi bi-moon-stars"></i></button>
+        <button class="btn btn-outline-light btn-sm lang-btn">EN</button>
+      </div>
+    </div>
+  </div>
+
   <main>
-    <section class="hero" id="home">
-      <div class="hud mono d-none d-md-block">STATUS: <span style="color:var(--accent)">ONLINE</span><br>LOC:
-        Sertãozinho/SP<br>ROLE: DEV_JR</div>
-      <p class="eyebrow mono" data-i="heroEyebrow">SISTEMA INICIALIZADO</p>
-      <h1 class="glitch glow" data-text="Pedro Henrique">Pedro Henrique</h1>
-      <h2 class="mono" style="font-size:1.1rem;color:var(--muted)" data-i="heroRole">Desenvolvedor Jr. | Robótica |
-        Tecnologia</h2>
-      <p style="max-width:520px;color:var(--muted)" data-i="heroDesc">Estudante de Análise e Desenvolvimento de
+
+    <!-- Hero -->
+    <section id="home" class="container py-5">
+      <p class="text-danger fw-semibold text-uppercase small" data-i="heroEyebrow">SISTEMA INICIALIZADO</p>
+      <h1 class="display-4 fw-bold">Pedro Henrique</h1>
+      <h2 class="fs-4 text-body-secondary" data-i="heroRole">Desenvolvedor | Robótica | Tecnologia</h2>
+      <p class="lead text-body-secondary col-lg-8" data-i="heroDesc">Estudante de Análise e Desenvolvimento de
         Sistemas, 6 anos de robótica competitiva e paixão por construir coisas com código.</p>
-      <a href="#contact" class="btn-accent d-inline-block mt-2" style="width:fit-content" data-i="heroCta">Vamos
-        conversar</a>
+      <a href="#contact" class="btn btn-danger btn-lg mt-2" data-i="heroCta">Vamos conversar</a>
     </section>
 
-    <section id="about">
-      <p class="eyebrow mono" data-i="aboutEyebrow">QUEM SOU EU</p>
+    <!-- Sobre: bio + cards de formação/skills -->
+    <section id="about" class="container py-5">
       <h2 class="mb-4" data-i="aboutTitle">Sobre</h2>
       <div class="row g-4">
-        <div class="col-lg-7" style="color:var(--muted)" data-i="aboutBio">Tenho 18 anos, sou natural de Sertãozinho/SP
-          e estou cursando Análise e Desenvolvimento de Sistemas na Faculdade SENAI Ribeirão Preto, após concluir o
-          técnico em Desenvolvimento de Sistemas no SENAI e o Ensino Médio no SESI CE-241. Por 3 anos integrei a equipe
-          de robótica FRC Steel Bulls 9460, ajudando a construir o Project Bull AI, e venho me aprofundando em
-          JavaScript, TypeScript, Java, C# e Python. Nas horas livres, jogo basquete, games com os amigos e crio sites
-          por diversão.</div>
+        <div class="col-lg-7 text-body-secondary" data-i="aboutBio">Tenho 18 anos, sou natural de Sertãozinho/SP
+          e estou cursando Análise e Desenvolvimento de Sistemas na Faculdade SENAI Ribeirão Preto...</div>
         <div class="col-lg-5">
-          <div class="card-tech p-3 mb-2"><strong class="mono" style="color:var(--gold)"
-              data-i="eduTitle">Formação</strong>
-            <ul class="mt-2 mb-0" style="color:var(--muted);font-size:.9rem">
-              <li>Tecnólogo em ADS — SENAI Ribeirão Preto (2026–2028)</li>
-              <li>Técnico em Dev. de Sistemas — SENAI Sertãozinho (2024–2026)</li>
-              <li>Ensino Médio — SESI CE-241 (concl. 2025)</li>
-            </ul>
+          <div class="card mb-3">
+            <div class="card-body">
+              <h3 class="h6 text-danger" data-i="eduTitle">Formação</h3>
+              <ul class="list-unstyled small text-body-secondary mb-0">
+                <li>Tecnólogo em ADS — SENAI Ribeirão Preto (2026–2028)</li>
+                <li>Técnico em Dev. de Sistemas — SENAI Sertãozinho (2024–2026)</li>
+                <li>Ensino Médio — SESI CE-241 (concl. 2025)</li>
+              </ul>
+            </div>
           </div>
-          <div id="skillsBox"></div>
+          <div class="card">
+            <div class="card-body">
+              <h3 class="h6 text-danger">Skills</h3>
+              <div id="skillsBox" class="d-flex flex-wrap gap-2"></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="projects">
-      <p class="eyebrow mono" data-i="projEyebrow">CÓDIGO EM AÇÃO</p>
+    <!-- Projetos: cards gerados pelo JS -->
+    <section id="projects" class="container py-5">
       <h2 class="mb-4" data-i="projTitle">Projetos</h2>
       <div class="row g-4" id="projGrid"></div>
     </section>
 
-    <section id="featured">
-      <p class="eyebrow mono" data-i="featEyebrow">PROJETO PRINCIPAL</p>
+    <!-- Destaque: 1 card com imagem + texto lado a lado -->
+    <section id="featured" class="container py-5">
       <h2 class="mb-4" data-i="featTitle">Project Bull AI</h2>
-      <div class="featured">
-        <img class="featured-img" src="assets/foto-equipe.png" alt="Equipe FRC Steel Bulls 9460" loading="lazy">
-        <div>
-          <h3 class="glow" style="color:var(--gold)">FRC Steel Bulls 9460</h3>
-          <p style="color:var(--muted)" data-i="featDesc">Robô de competição com integração de Inteligência Artificial,
-            desenvolvido e pilotado ao longo de 3 anos na equipe Steel Bulls 9460, competindo na Regional FRC de São
-            Paulo e no Nacional FRC em Brasília.</p>
-          <div class="mb-3 badge-wrap"><span class="badge-tech">Java</span><span class="badge-tech">Sensores</span><span
-              class="badge-tech">IA aplicada</span><span class="badge-tech">Estratégia em tempo real</span></div>
-          <p class="mono" style="font-size:.85rem;color:var(--accent)">🏆 Rookie Inspiration Award · Finalist Award ·
-            Quality Award (Reefscape)</p>
+      <div class="card bg-body-tertiary border-warning">
+        <div class="row g-0 align-items-center">
+          <div class="col-md-5">
+            <div class="ratio ratio-4x3">
+              <img src="assets/foto-equipe.png" class="object-fit-cover rounded-start"
+                alt="Equipe FRC Steel Bulls 9460">
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="card-body">
+              <h3 class="card-title text-warning">FRC Steel Bulls 9460</h3>
+              <p class="card-text text-body-secondary" data-i="featDesc">Robô de competição com integração de
+                Inteligência Artificial...</p>
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge text-bg-secondary">Java</span>
+                <span class="badge text-bg-secondary">Sensores</span>
+                <span class="badge text-bg-secondary">IA aplicada</span>
+                <span class="badge text-bg-secondary">Estratégia em tempo real</span>
+              </div>
+              <p class="small text-danger mb-0">🏆 Rookie Inspiration Award · Finalist Award · Quality Award
+                (Reefscape)</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="robotics">
-      <p class="eyebrow mono" data-i="roboEyebrow">TRAJETÓRIA</p>
+    <!-- Robótica: fotos + prêmios, gerados pelo JS -->
+    <section id="robotics" class="container py-5">
       <h2 class="mb-4" data-i="roboTitle">Momentos / Robótica</h2>
       <div class="row g-4 mb-4" id="roboGrid"></div>
       <div class="row g-3" id="awardGrid"></div>
     </section>
 
-    <section id="contact">
-      <p class="eyebrow mono" data-i="contEyebrow">FALE COMIGO</p>
+    <!-- Contato: botões redondos com ícone -->
+    <section id="contact" class="container py-5">
       <h2 class="mb-4" data-i="contTitle">Contato</h2>
       <div class="d-flex flex-wrap gap-3">
-        <a class="contact-icon" href="mailto:pedroh.mendes472@gmail.com" aria-label="Email"><i
-            class="bi bi-envelope"></i></a>
-        <a class="contact-icon" href="https://github.com/PedroHenriMende" target="_blank" aria-label="GitHub"><i
-            class="bi bi-github"></i></a>
-        <a class="contact-icon" href="https://www.linkedin.com/in/pedro-jesus-aa4018383/" target="_blank"
-          aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-        <a class="contact-icon" href="https://www.instagram.com/pedro_mjay" target="_blank" aria-label="Instagram"><i
-            class="bi bi-instagram"></i></a>
+        <a class="btn btn-outline-danger rounded-circle p-3" href="mailto:pedroh.mendes472@gmail.com"
+          aria-label="Email"><i class="bi bi-envelope"></i></a>
+        <a class="btn btn-outline-danger rounded-circle p-3" href="https://github.com/PedroHenriMende"
+          target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a class="btn btn-outline-danger rounded-circle p-3" href="https://www.linkedin.com/in/pedro-jesus-aa4018383/"
+          target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a class="btn btn-outline-danger rounded-circle p-3" href="https://www.instagram.com/pedro_mjay"
+          target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
       </div>
-      <p class="mt-4 mono" style="color:var(--muted)"><i class="bi bi-geo-alt"></i> Sertãozinho/SP · (16) 99161-0226</p>
+      <p class="mt-4 text-body-secondary"><i class="bi bi-geo-alt"></i> Sertãozinho/SP · (16) 99161-0226</p>
     </section>
   </main>
 
+  <footer class="text-center text-body-secondary small py-4 border-top">© 2026 Pedro Henrique</footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
   <script src="script/script.js"></script>
 </body>
 
