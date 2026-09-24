@@ -1,29 +1,27 @@
 # Pedro Henrique — Portfólio Pessoal
 
-Portfólio pessoal com identidade visual cyberpunk/robótica, desenvolvido em **HTML5, CSS3, Bootstrap 5.3 e JavaScript puro (Vanilla JS)**.
+Portfólio pessoal construído com **HTML5, Bootstrap 5.3 e JavaScript puro (Vanilla JS)**. O CSS próprio é mínimo de propósito: praticamente tudo do layout, componentes e tema (claro/escuro) vem direto do Bootstrap.
 
 ## ✨ Funcionalidades
 
-- Sidebar de navegação vertical com destaque automático da seção visível (scroll-spy)
-- Dark / Light mode (padrão: dark)
-- Seletor de cor de destaque (`--accent`, padrão vermelho)
+- Sidebar de navegação vertical (desktop) com destaque automático da seção visível, via **Scrollspy** do Bootstrap
+- No mobile, a sidebar vira uma barra fixa no topo que abre o menu em uma gaveta lateral (**Offcanvas** do Bootstrap)
+- Dark / Light mode nativo do Bootstrap (`data-bs-theme`), padrão: dark
 - Alternância de idioma Português / Inglês
-- Efeito glitch no título e nos hovers
-- Cursor customizado (desabilitado automaticamente em telas touch)
-- Loading inicial ("INITIALIZING SYSTEM...") e loading rápido ao navegar entre seções
+- Efeitos sutis de hover e transição (cards, links e botões) e fade de entrada nas seções
 - Seções: Home, Sobre, Projetos, Projeto Destaque, Momentos/Robótica e Contato
 - Totalmente responsivo (desktop, tablet e mobile)
-- Acessibilidade: HTML semântico, `aria-label`, foco visível e suporte a `prefers-reduced-motion`
 
 ## 📁 Estrutura de arquivos
 
 ```
 portfolio/
-├── index.html          # Estrutura da página
+├── index.html          # Estrutura da página (componentes Bootstrap)
 ├── css/
-│   └── style.css        # Estilos, tema e animações
+│   └── style.css        # Só o que o Bootstrap não cobre: offsets e efeitos
 ├── script/
-│   └── script.js         # Interatividade, i18n e dados dos cards
+│   └── script.js         # i18n, dados dos cards e tema claro/escuro
+├── assets/               # Fotos (equipe, robótica)
 └── README.md
 ```
 
@@ -43,22 +41,23 @@ Depois acesse `http://localhost:5500/index.html`.
 ## 🛠️ Tecnologias
 
 - HTML5 semântico
-- CSS3 (custom properties, grid, flexbox, glassmorphism)
-- Bootstrap 5.3 (grid e utilitários, via CDN)
+- Bootstrap 5.3 (grid, Navbar, Offcanvas, Scrollspy, Cards, Badges, Color Modes — via CDN)
 - Bootstrap Icons (via CDN)
-- JavaScript puro (sem frameworks)
-- Google Fonts: Orbitron, Share Tech Mono, Inter
+- JavaScript puro (sem frameworks), responsável só pelo conteúdo dinâmico (textos, projetos, fotos) e pelo tema
+- CSS próprio reduzido a poucas linhas: offsets de layout e pequenos efeitos de hover/transição
 
 ## ✏️ Personalização rápida
 
 | O que mudar | Onde |
 |---|---|
 | Textos e traduções (PT/EN) | objeto `T` no início do `script.js` |
+| Itens do menu | array `NAV` no `script.js` |
 | Lista de projetos | array `PROJ` no `script.js` |
 | Galeria de robótica | array `ROBO` no `script.js` |
+| Prêmios/conquistas | array `AWARDS` no `script.js` |
 | Skills exibidas | array `SKILLS` no `script.js` |
-| Cor de destaque padrão | variável `--accent` no `style.css` (também ajustável pelo seletor de cor na sidebar) |
-| Fotos reais (projetos e robótica) | trocar os placeholders `.imgph` por `<img>` no `index.html` |
+| Cor de destaque | classes utilitárias do Bootstrap no `index.html` (ex.: `text-danger`, `btn-danger`) |
+| Tema claro/escuro padrão | atributo `data-bs-theme` na tag `<html>` do `index.html` |
 
 ## 📬 Contato
 
